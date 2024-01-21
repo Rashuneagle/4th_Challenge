@@ -37,13 +37,24 @@ THEN I can save my initials and my score(local storage)
 ```
 # Decompostion
 Seperation of concerns
-//Create event listener "click", with a function named startGame()
-//Create time interval of 5 minutes for the game
-//Create the prompts for each question
-//Create a for loop for until the game ends
+//functionality concerns:
+//Create variable for Buttons 
+//Create event listener "click" for buttons, with a function named GameStart()
+//create a function within gameStart() to go to next creation
+//create a function within gameStart() to count down time (time interval 5 minutes)
+//Make this function capable of decresing the time when a question is answered incorrectly
+//Create a for loop to go to next question until the game ends
 //Create if statment for wrongly answered questions and have time decresed from overall game
 //have the game be able to reset once it ends
 //Create local storage so highscores can be saved
+
+//UI concerns:
+//Create button to start game with event listener
+//create time clock section so clock can be viewed
+//create questions
+//Create the buttons for the answers below the questions
+//Create the view highscore button and
+//Create the reset button
 
 ## Mock-Up
 
