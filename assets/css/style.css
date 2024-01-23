@@ -8,3 +8,11 @@ main{
     justify-content: center;
     padding-top: 250px;
 }
+
+#questions{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px;
+    flex
+}
