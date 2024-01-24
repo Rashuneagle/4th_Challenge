@@ -9,6 +9,8 @@ startGameBtn.addEventListener("click", gameStart);
 var secondsLeft = 300;
 
 function gameStart() {
+    startGameBtn.remove();
+
     var questions = [
         {
             question: "What is an eventListener?",
@@ -59,6 +61,5 @@ function gameStart() {
 }
 
 function results() {
-    // Add your logic for displaying results
-    console.log("Quiz completed. Display results here.");
+    
 }
