@@ -36,11 +36,15 @@ function gameStart() {
     questionElement.textContent = currentQuestion.question;
     main.appendChild(questionElement);
 
-    // Display the options
+    // Display the options and create button for options
     var optionsList = document.createElement('ul');
     currentQuestion.options.forEach(function (option) {
-        var optionItem = document.createElement('li');
+        var optionItem = document.createElement('button');
         optionItem.textContent = option;
+        optionItem.addEventListener("click", function () {
+            // Handle user selection and save to local storage
+            handleOptionSelection(option);
+        });
         optionsList.appendChild(optionItem);
     });
     main.appendChild(optionsList);
@@ -48,6 +52,14 @@ function gameStart() {
     console.log(currentQuestion);
     console.log(currentQuestion.options.join(', '));
     console.log(currentQuestion.correct);
+
+    var submitBtn = document.createElement('button');
+    submitBtn.textContent = 'Submit';
+    submitBtn.addEventListener("click", function () {
+        // Handle submission
+        handleSubmission();
+    });
+    optionsList.appendChild(submitBtn);
 
     var timeInterval = setInterval(function () {
         secondsLeft--;
@@ -60,6 +72,21 @@ function gameStart() {
     }, 1000);
 }
 
+function handleOptionSelection(selectedOption) {
+    // save to local storage
+    localStorage.setItem('userSelectedOption', selectedOption);
+}
+
+function handleSubmission() {
+    // Handle logic when answer is submitted
+    console.log("Submit button clicked.");
+
+    // Retrieve the user's selected option from local storage
+    var selectedOption = localStorage.getItem('userSelectedOption');
+    console.log("User's selected option: " + selectedOption);
+}
+
 function results() {
-    
+
+    console.log("Quiz completed. Display results here.");
 }
