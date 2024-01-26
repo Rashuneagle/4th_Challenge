@@ -1,8 +1,11 @@
 var startGameBtn = document.querySelector("#startGame");
 var timeLimit = document.getElementById("timeLeft");
 var main = document.querySelector(".main");
+var resetBtn; // Declare resetBtn globally
+
 var questions;
 var currentQuestionIndex = 0;
+var isAnswerCorrect = true; // Flag to check if the answer is correct
 
 console.log(startGameBtn);
 
@@ -16,23 +19,34 @@ function gameStart() {
     questions = [
         {
             question: "What is an eventListener?",
-            options: ['op1', 'op2', 'op3', 'op4'],
+            options: ['op1: A function that handles user inputs or interactions','op2: An object used to store data','op3: A method for creating animations','op4: A programming language used for web development'
+            ],
             correct: 'op1'
         },
         {
-            question: "question 2",
-            options: ["op1", "op2", "op3", "op4"],
-            correct: "op2"
+            question: "What is the symbol for a single-line comment in JavaScript?",
+            options: ['// ', ' /* ', ' -- ', ' ##'],
+            correct: '//'
         },
         {
-            question: "question 3",
-            options: ["op1", "op2", "op3", "op4"],
-            correct: "op2"
+            question: "What is the purpose of the `var` keyword in JavaScript?",
+            options: ['To declare a variable', 'To create a function', 'To define an object', 'To import a library'],
+            correct: 'To declare a variable'
         }
     ];
 
+    // Create the reset button
+    resetBtn = document.createElement('button');
+    resetBtn.textContent = 'Reset Game';
+    resetBtn.addEventListener('click', resetGame);
+
+    // Display the first question
     displayQuestion(questions[currentQuestionIndex]);
 
+    // Append the reset button to the body
+    document.body.appendChild(resetBtn);
+
+    // Set up the timer interval
     var timeInterval = setInterval(function () {
         secondsLeft--;
         timeLimit.textContent = secondsLeft;
@@ -72,6 +86,11 @@ function displayQuestion(currentQuestion) {
     submitBtn.addEventListener("click", function () {
         // Handle submission
         handleSubmission();
+        if (!isAnswerCorrect) {
+            // Subtract 5 extra seconds if the answer is incorrect
+            secondsLeft -= 5;
+            isAnswerCorrect = true; // Reset the flag
+        }
     });
     optionsList.appendChild(submitBtn);
 }
@@ -88,6 +107,11 @@ function handleSubmission() {
     // Retrieve the user's selected option from local storage
     var selectedOption = localStorage.getItem('userSelectedOption');
     console.log("User's selected option: " + selectedOption);
+
+    // Check if the selected option is correct
+    if (selectedOption !== questions[currentQuestionIndex].correct) {
+        isAnswerCorrect = false;
+    }
 
     // Move to the next question
     currentQuestionIndex++;
@@ -112,4 +136,21 @@ function results() {
             questions[i].correct;
         main.appendChild(resultElement);
     }
+}
+
+// Reset the game state
+function resetGame() {
+    // Remove the reset button
+    resetBtn.remove();
+
+    // Reset variables
+    currentQuestionIndex = 0;
+    isAnswerCorrect = true;
+    secondsLeft = 300;
+
+    // Clear local storage
+    localStorage.removeItem('userSelectedOption');
+
+    // Start the game again
+    gameStart();
 }
