@@ -1,5 +1,10 @@
+Git hub deployed site: https://rashuneagle.github.io/4th_Challenge/
+
+Picture of website: ![image](https://github.com/Rashuneagle/4th_Challenge/assets/152398969/377976aa-ba01-49ed-8f31-b1448a3edbaf)
+
+
 # 4th_Challenge
-4th_Challenge of the coding bootcamp
+4th_Challenge of the coding bootcamp. I have to create a Javascript quiz. In that quiz I should be able to reset it, view my highsores, and put my initals. I should also lose time if I answer wrong.
 
 
 # 04 Web APIs: Code Quiz
